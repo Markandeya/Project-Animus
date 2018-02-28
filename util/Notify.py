@@ -7,6 +7,5 @@ class Notify:
         pass
 
     def notify(self, msg):
-        print('test')
         notification = notify2.Notification('Animus', message=msg, icon='')
         notification.show()
