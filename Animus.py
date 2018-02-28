@@ -1,4 +1,5 @@
 from util.Voice import Voice
+from util.Listen import Listen
 from util.Notify import Notify
 from util.Color import Color
 
@@ -13,7 +14,7 @@ class Animus(object):
         
         #Create mouth and Greet user
         mouth = Voice()
-        mouth.speak('Namaskar वसुदेव, mein apke liye kya karsakti hoon?')
+        mouth.speak('Hello sir, what can I do?')
 
         #Create notifier and Show initialised notification
         notifier = Notify()
@@ -21,4 +22,10 @@ class Animus(object):
 
         #Greet in terminal
         color = Color()
-        color.colorize('Say something..', 'blue')
+        color.primary('Animus initialized..')
+        
+        #Create ear and listen to user
+        ear = Listen()
+        speech = ear.spokenwords()
+        color.primary(speech)
+        mouth.speak(speech)
