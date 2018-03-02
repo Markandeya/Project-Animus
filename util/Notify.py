@@ -1,11 +1,9 @@
 import notify2
 
-notify2.init('Animus')
-
 class Notify:
     def __init__(self):
-        pass
+        notify2.init('Animus')
 
-    def notify(self, msg):
-        notification = notify2.Notification('Animus', message=msg, icon='')
+    def notify(self, msg, ico="notification-message-im"):
+        notification = notify2.Notification('Animus', message=msg, icon=ico)
         notification.show()
