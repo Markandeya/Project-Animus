@@ -2,6 +2,7 @@ from util.Voice import Voice
 from util.Listen import Listen
 from util.Notify import Notify
 from util.Color import Color
+from util.Brain import Brain
 
 '''
     This is the main Animus class, Animus itself is considered to have
@@ -9,6 +10,7 @@ from util.Color import Color
 '''
 
 class Animus(object):
+    brain = None
     mouth = None
     notifier = None
     color = None
@@ -16,6 +18,9 @@ class Animus(object):
 
     def __init__(self):
         
+        #Create Brain
+        Animus.Brain = Brain()
+
         #Create mouth and Greet user
         Animus.mouth = Voice()
         Animus.mouth.speak('Hello sir, what can I do?')
@@ -57,6 +62,12 @@ class Animus(object):
                 Animus.color.primary('Goodbye')
                 quit()
             
-            Animus.color.primary(speech)
+            #if speech is not empty print string
+            #run the Brain.py to map the command
+            if speech != "":
+                Animus.color.primary(speech)
+                Brain.interpret(speech)
+                
+
             Animus.mouth.speak(speech)
 
