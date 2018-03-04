@@ -36,18 +36,7 @@ class Animus(object):
         #Create ear and listen to user
         Animus.ear = Listen()
 
-        #listen and interpret once
-        Listen.color.primary("Say something..")
-
-        speech = Animus.ear.spokenwords()
-        
-        if 'quit' == speech:
-            Animus.mouth.speak('Goodbye')
-            Animus.color.primary('Goodbye')
-            quit()
-        
-        Animus.color.primary(speech)
-        Animus.mouth.speak(speech)
+        Listen.color.primary("Say 'Hey there' to start")
 
         #start infinite listening loop
         self.start()
@@ -56,18 +45,15 @@ class Animus(object):
     def start():
         while(True):
             speech = Animus.ear.spokenwords()
-
-            if 'Animus quit' == speech:
-                Animus.mouth.speak('Goodbye')
-                Animus.color.primary('Goodbye')
-                quit()
             
             #if speech is not empty print string
             #run the Brain.py to map the command
-            if speech != "":
+            answer = ''
+            if speech != "" and speech != None:
+                Animus.color.info('You said -')
                 Animus.color.primary(speech)
-                Brain.interpret(speech)
+                answer = Animus.Brain.interpret(speech)
                 
-
-            Animus.mouth.speak(speech)
+            if answer != "":
+                Animus.color.success(answer)
 
