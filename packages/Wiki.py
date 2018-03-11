@@ -2,6 +2,10 @@ import wikipedia
 from util.Color import Color
 from util.Voice import Voice
 
+'''
+Note to self: wiki returns string to print and speaks
+for itself
+'''
 
 class Wiki:
     color = None 
@@ -14,6 +18,7 @@ class Wiki:
         print(text)
         try:
             answer = wikipedia.summary(text, sentences=2)
+            Voice.speak('Heres a summary')
             return answer
 
         except wikipedia.exceptions.DisambiguationError as de:
@@ -29,5 +34,5 @@ class Wiki:
 
         except ValueError as e:
             Voice.speak('Something went wrong')
-            Wiki.color.alert('pass ValueEror')
+            Wiki.color.alert('Encountered ValueEror')
             return ""

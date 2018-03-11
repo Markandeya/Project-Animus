@@ -17,7 +17,19 @@ class Animus(object):
     ear = None
 
     def __init__(self):
-        
+        print('''
+      ___   _   _ ________  ____   _ _____ 
+     / _ \ | \ | |_   _|  \/  | | | /  ___|
+    / /_\ \|  \| | | | | .  . | | | \ `--. 
+    |  _  || . ` | | | | |\/| | | | |`--. \\
+    | | | || |\  |_| |_| |  | | |_| /\__/ /
+    \_| |_/\_| \_/\___/\_|  |_/\___/\____/ 
+
+     ______________________________________                                       
+    |                                      |
+    | By Vasudev R. Nair                   |
+    |______________________________________|                   
+    ''')
         #Create Brain
         Animus.Brain = Brain()
 
@@ -45,7 +57,7 @@ class Animus(object):
     def start():
         while(True):
             speech = Animus.ear.spokenwords()
-            
+            print('x')
             #if speech is not empty print string
             #run the Brain.py to map the command
             answer = ''

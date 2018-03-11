@@ -1,10 +1,13 @@
 import wolframalpha
 from util.Color import Color
 from util.Voice import Voice
-
+import re
 
 app_id = 'L3J57Q-TWXW7R75RT'
-
+'''
+Note to self: wolfram returns string to print and speaks
+for itself
+'''
 
 class Wolfram:
     client = None
@@ -21,6 +24,7 @@ class Wolfram:
         if answer == "My name is Wolfram|Alpha.":
             Voice.speak("My name is Animus, you may call me Ann")
             return "My name is Animus"
-        Voice.speak(answer)
+        #dont speak additional info within (info) paranthesis
+        Voice.speak(re.sub('\(.*?\)', '', answer))
 
         return answer

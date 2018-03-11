@@ -1,6 +1,6 @@
 import packages.Wiki as Wiki
 import packages.Wolfram as Wolfram
-
+from.textprocess import textprocess
 ''' 
     This is the Brain of Animus where it processes user speech 
     to recognisable format ,interprets and executes
@@ -16,9 +16,16 @@ class Brain:
         Brain.wolfram = Wolfram.Wolfram()
 
     #Main thinking function
+    #Step 1 : Try common functionalites
+    #Step 2: Not found then forward to wolframalpha and wiki
 
     def interpret(self,text):
         print('Interpreting speech')
+
+        map = textprocess(text)
+        if map:
+            return map
+
         try:
             return Brain.wolfram.query(text)
 
