@@ -3,6 +3,7 @@ from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from packages.Gmap import Gmap
+from packages.News import News
 
 def textprocess(text):
     print('in textprocess')
@@ -41,7 +42,18 @@ def textprocess(text):
         print('found map from command')
         places = text.split('map from')
         places = places[1].split('to')
-        print(places[1], places[2])
+
         Gmap.open(places[0], places[1])
         return 'Heres the route from '+places[0]+' to '+places[1]
+
+    #news program
         
+    if 'top news' in text:
+        print('topnews')
+        return News.topnews()
+    elif 'latest news' in text:
+        print('latest news')
+        return News.latestnews()
+    elif 'trending news' in text:
+        print('popular news')
+        return News.popularnews()
