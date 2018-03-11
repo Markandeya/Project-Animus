@@ -1,5 +1,5 @@
 from util.Voice import Voice
-from util.Listen import Listen
+import util.Listen as Listen
 from util.Notify import Notify
 from util.Color import Color
 from util.Brain import Brain
@@ -46,9 +46,9 @@ class Animus(object):
         Animus.color.primary('Animus initialized..')
         
         #Create ear and listen to user
-        Animus.ear = Listen()
+        Animus.ear = Listen.Listen()
 
-        Listen.color.primary("Say 'Hey there' to start")
+        Animus.ear.color.primary("Say 'Hey there' to start")
 
         #start infinite listening loop
         self.start()

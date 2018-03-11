@@ -1,6 +1,6 @@
 import packages.Wiki as Wiki
 import packages.Wolfram as Wolfram
-from.textprocess import textprocess
+from .textprocess import textprocess
 ''' 
     This is the Brain of Animus where it processes user speech 
     to recognisable format ,interprets and executes
@@ -21,6 +21,10 @@ class Brain:
 
     def interpret(self,text):
         print('Interpreting speech')
+
+        if 'cancel' == text:
+            print('Operation cancelled')
+            return "Operation cancelled"
 
         map = textprocess(text)
         if map:
