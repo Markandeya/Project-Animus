@@ -5,14 +5,6 @@ from .Brain import Brain
 '''
 returns recognised speech or empty string
 '''
-#base exception
-class Error(Exception):
-   """Base class for other exceptions"""
-   pass
-
-#custom exception
-class DidntUnderstandException(Error):
-    pass
 
 class Listen:
     r = None
@@ -53,31 +45,7 @@ class Listen:
 
                 except sr.UnknownValueError as e:
                     Voice.speak("Sorry, I did not understand")
-                    raise DidntUnderstandException
-
-                #if didnt understand give one more go
-                except DidntUnderstandException as e:
-                    Voice.speak("Lets try again")
-                    Listen.color.primary("lets try again..")
-                    
-                    
-                    with sr.Microphone() as source:
-                        sr.SAMPLE_RATE = 48000
-                        audio = Listen.r.listen(source)
-                    
-                    try:
-                        recog_speech = str(Listen.r.recognize_google(audio))
-                        return recog_speech
-
-                    except sr.UnknownValueError as e:
-                        Voice.speak('Sorry, I did not understand')
-                    except sr.RequestError as e:
-                        Listen.color.alert("There seems to be internet connection problem..")
-                        return ""
-                    except Exception as e:
-                        Listen.color.alert('Something bad happened')
-                        return ""
-                
+                    return ""            
                 except sr.RequestError as e:
                     Listen.color.alert("There seems to be internet connection problem..")
                     return ""

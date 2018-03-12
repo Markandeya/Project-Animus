@@ -8,21 +8,14 @@ from packages.Mail import Mail
 import speech_recognition as sr
 from .Color import Color
 
-#base exception
-class Error(Exception):
-   """Base class for other exceptions"""
-   pass
-
-#custom exception
-class DidntUnderstandException(Error):
-    pass
-
 color = Color()
 
 def listen():
     r = sr.Recognizer()
+    r.energy_threshold = 4000
     
     with sr.Microphone() as source:
+        print('active mic')
         sr.SAMPLE_RATE = 48000
         audio = r.listen(source)
         print('listened')
@@ -32,31 +25,7 @@ def listen():
 
         except sr.UnknownValueError as e:
             color.alert("Sorry, I did not understand")
-            raise DidntUnderstandException
-
-        #if didnt understand give one more go
-        except DidntUnderstandException as e:
-            color.alert("Lets try again")
-            Color.primary("lets try again..")
-            
-            
-            with sr.Microphone() as source:
-                sr.SAMPLE_RATE = 48000
-                audio = r.listen(source)
-            
-            try:
-                recog_speech = str(r.recognize_google(audio))
-                return recog_speech
-
-            except sr.UnknownValueError as e:
-                color.alert('Sorry, I did not understand')
-            except sr.RequestError as e:
-                color.alert("There seems to be internet connection problem..")
-                return ""
-            except Exception as e:
-                color.alert('Something bad happened')
-                return ""
-
+            return ""
         except sr.RequestError as e:
             color.alert("There seems to be internet connection problem..")
             return ""
