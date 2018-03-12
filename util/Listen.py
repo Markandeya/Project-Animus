@@ -21,11 +21,15 @@ class Listen:
     def __init__(self):
 
         Listen.r = sr.Recognizer()
+        #Listen.r.dynamic_energy_threshold = True
+        Listen.r.energy_threshold = 4000
         Listen.color = Color()
 
     def spokenwords(self):
         print('.')
         with sr.Microphone() as source:
+            #Listen.r.adjust_for_ambient_noise(source)
+            
             sr.SAMPLE_RATE = 48000
             print('active mic')
             audio = Listen.r.listen(source)

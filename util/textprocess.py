@@ -6,7 +6,7 @@ from packages.Gmap import Gmap
 from packages.News import News
 from packages.Mail import Mail
 import speech_recognition as sr
-import util.Color as Color
+from .Color import Color
 
 #base exception
 class Error(Exception):
@@ -17,8 +17,9 @@ class Error(Exception):
 class DidntUnderstandException(Error):
     pass
 
+color = Color()
+
 def listen():
-    color = Color.Color()
     r = sr.Recognizer()
     
     with sr.Microphone() as source:
@@ -121,15 +122,23 @@ def textprocess(text):
     if 'send email' == text:
         print('What is the message?')
         msg = listen()
-
-        recipient = input('Whom do you want to send? type it out (type c to cancel)-')
+        color.info('You said :' + msg)
+        color.primary('Whom do you want to send? type it out (type c to cancel)-')
+        recipient = input()
 
         if recipient == 'c':
             print('Cancelled operation')
             return ""
         
-        print('What is the subject?')
+        color.primary('What is the subject?')
         subject = listen()
-        print(subject, msg)
-        #Mail.send_email(subject, msg)
+        color.info('Subject:'+ subject + '\nMessage:' + msg)
+        color.primary('Are you sure you want to send? (say yes)')
+
+        bol = listen()
+        if bol == 'yes':
+            Mail.send_email(subject, msg)
+        else:
+            color.alert('Cancelled')
+            return ""
         return "Done"
