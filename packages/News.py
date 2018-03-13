@@ -7,7 +7,7 @@ class News:
     @staticmethod
     def topnews():
         Voice.speak('Heres the top news for you')
-        news = News.articles.get_by_top('google-news')
+        news = News.articles.get_by_top('the-times-of-india')
         articles = news.articles
 
         for art in articles:
@@ -21,7 +21,7 @@ class News:
     @staticmethod
     def popularnews():
         Voice.speak('Here are some popular news for you')
-        news = News.articles.get_by_popular('google-news')
+        news = News.articles.get_by_popular('the-times-of-india')
         articles = news.articles
 
         for art in articles:
@@ -35,7 +35,7 @@ class News:
     @staticmethod
     def latestnews():
         Voice.speak('These are some latest news for you')
-        news = News.articles.get_by_latest('google-news')
+        news = News.articles.get_by_latest('the-times-of-india')
         articles = news.articles
 
         for art in articles:

@@ -12,7 +12,7 @@ color = Color()
 
 def listen():
     r = sr.Recognizer()
-    r.energy_threshold = 4000
+    r.energy_threshold = 2000
     
     with sr.Microphone() as source:
         print('active mic')
@@ -74,6 +74,12 @@ def textprocess(text):
 
         Gmap.open(places[0], places[1])
         return 'Heres the route from '+places[0]+' to '+places[1]
+    
+    elif 'restaurant near me' in text or 'restaurants near me' in text:
+        print('found map command')
+        place = input('Enter your location')
+        Gmap.restaurants(place)
+        return "Here are some restaurants near you"
 
     #news program
         
