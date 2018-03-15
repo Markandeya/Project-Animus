@@ -14,7 +14,7 @@ class Listen:
 
         Listen.r = sr.Recognizer()
         #Listen.r.dynamic_energy_threshold = True
-        Listen.r.energy_threshold = 2000
+        Listen.r.energy_threshold = 1000
         Listen.color = Color()
 
     def spokenwords(self):

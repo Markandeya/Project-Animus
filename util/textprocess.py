@@ -12,7 +12,7 @@ color = Color()
 
 def listen():
     r = sr.Recognizer()
-    r.energy_threshold = 2000
+    r.energy_threshold = 1000
     
     with sr.Microphone() as source:
         print('active mic')
