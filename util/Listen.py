@@ -21,7 +21,7 @@ class Listen:
         print('.')
         with sr.Microphone() as source:
             #Listen.r.adjust_for_ambient_noise(source)
-            
+            Listen.r.energy_threshold = 1000
             sr.SAMPLE_RATE = 48000
             print('active mic')
             audio = Listen.r.listen(source)
@@ -36,6 +36,7 @@ class Listen:
                 
                 
                 with sr.Microphone() as source:
+                    Listen.r.energy_threshold = 1000
                     sr.SAMPLE_RATE = 48000
                     audio = Listen.r.listen(source)
                     print('listened')
@@ -45,7 +46,7 @@ class Listen:
 
                 except sr.UnknownValueError as e:
                     Voice.speak("Sorry, I did not understand")
-                    return ""            
+                    return "error"            
                 except sr.RequestError as e:
                     Listen.color.alert("There seems to be internet connection problem..")
                     return ""

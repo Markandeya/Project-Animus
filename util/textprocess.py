@@ -5,10 +5,16 @@ from nltk.tokenize import word_tokenize
 from packages.Gmap import Gmap
 from packages.News import News
 from packages.Mail import Mail
+from packages.Calendar import Calendar
 import speech_recognition as sr
 from .Color import Color
 
 color = Color()
+'''
+Textprocess must return text, if nothing then empty string
+
+'''
+
 
 def listen():
     r = sr.Recognizer()
@@ -117,3 +123,31 @@ def textprocess(text):
             color.alert('Cancelled')
             return ""
         return "Done"
+
+    #Calendar
+    if 'create event' == text:
+        print('Say the event description?')
+        eventdesc = listen()
+        color.info('You said :' + eventdesc)
+        
+        color.primary('What is the title?')
+        title = listen()
+        color.info('You said :' + title)
+
+        color.primary('Please tell the date and time (like eg: April 27 1997)?')
+        timedate = listen()
+        color.info('You said :' + timedate)
+
+        color.info('Title:'+ title + '\nDescription:' + eventdesc + '\nDate:' + timedate)
+        color.primary('Are you sure you want to send? (say yes)')
+
+        bol = listen()
+        if bol == 'yes':
+            Calendar.create_event(title, eventdesc, timedate)
+        else:
+            color.alert('Cancelled')
+            return ""
+        return "Done"
+    elif 'get event' == text or 'get events' == text :
+        pass
+        #fetch events
