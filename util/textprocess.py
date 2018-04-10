@@ -6,6 +6,7 @@ from packages.Gmap import Gmap
 from packages.News import News
 from packages.Mail import Mail
 from packages.Calendar import Calendar
+from packages.System import System
 import speech_recognition as sr
 from .Color import Color
 
@@ -42,6 +43,9 @@ def listen():
 
 def textprocess(text):
     print('in textprocess')
+    
+    text = text.lower()
+    
     '''
     #tokenizing and codefying the speech
     ps = PorterStemmer()
@@ -150,4 +154,17 @@ def textprocess(text):
         return "Done"
     elif 'get event' == text or 'get events' == text :
         Calendar.get_events()
+        return "Done"
+
+    #Launch application
+    if 'launch' == text:
+        print('Say the appname')
+        appname = listen().lower()
+        System.launchapp(appname)
+        return "Done"
+
+    #Set brightness
+    if 'set brightness to' in text:
+        value = int(text.split('to')[1].lstrip())
+        System.change_brightness(value)
         return "Done"

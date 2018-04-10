@@ -46,7 +46,7 @@ class Listen:
 
                 except sr.UnknownValueError as e:
                     Voice.speak("Sorry, I did not understand")
-                    return "error"            
+                    return "cancel"            
                 except sr.RequestError as e:
                     Listen.color.alert("There seems to be internet connection problem..")
                     return ""
