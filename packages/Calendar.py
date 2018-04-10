@@ -65,7 +65,7 @@ class Calendar:
 
     @staticmethod
     def get_events():
-        credentials = self.get_credentials()
+        credentials = Calendar.get_credentials()
         http = credentials.authorize(httplib2.Http())
         service = discovery.build('calendar', 'v3', http=http)
 

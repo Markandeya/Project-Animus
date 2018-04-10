@@ -121,7 +121,7 @@ def textprocess(text):
             Mail.send_email(subject, msg)
         else:
             color.alert('Cancelled')
-            return ""
+            return "cancel"
         return "Done"
 
     #Calendar
@@ -146,8 +146,8 @@ def textprocess(text):
             Calendar.create_event(title, eventdesc, timedate)
         else:
             color.alert('Cancelled')
-            return ""
+            return "cancel"
         return "Done"
     elif 'get event' == text or 'get events' == text :
-        pass
-        #fetch events
+        Calendar.get_events()
+        return "Done"
