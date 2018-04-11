@@ -164,7 +164,23 @@ def textprocess(text):
         return "Done"
 
     #Set brightness
-    if 'set brightness to' in text:
-        value = int(text.split('to')[1].lstrip())
+    if 'set brightness as' in text:
+        string = text.split('as')
+        try:
+            string = string[1].lstrip()
+        except Exception as e:
+            return "cancel"
+        value = int(string)
         System.change_brightness(value)
+        return "Done"
+
+    #Set volume
+    if 'set volume as' in text:
+        string = text.split('as')
+        try:
+            string = string[1].lstrip()
+        except Exception as e:
+            return "cancel"
+        value = int(string)
+        System.set_sound(value)
         return "Done"
