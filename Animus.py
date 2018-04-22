@@ -57,7 +57,7 @@ class Animus(object):
     def start():
         while(True):
             speech = Animus.ear.spokenwords()
-            print('x')
+            
             #if speech is not empty print string
             #run the Brain.py to map the command
             answer = ''
@@ -68,4 +68,5 @@ class Animus(object):
                 
             if answer != "":
                 Animus.color.success(answer)
+
 

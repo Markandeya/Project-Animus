@@ -42,7 +42,7 @@ def listen():
 
 
 def textprocess(text):
-    print('in textprocess')
+    #print('in textprocess')
     
     text = text.lower()
     

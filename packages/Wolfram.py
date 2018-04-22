@@ -16,7 +16,7 @@ class Wolfram:
         Wolfram.client = wolframalpha.Client(app_id)
 
     def query(self, text):
-        print('Trying wolfram')
+        #print('Trying wolfram')
         res =   Wolfram.client.query(text)
         answer = next(res.results).text
 

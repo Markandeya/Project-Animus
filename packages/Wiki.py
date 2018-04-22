@@ -1,6 +1,7 @@
 import wikipedia
 from util.Color import Color
 from util.Voice import Voice
+import re
 
 '''
 Note to self: wiki returns string to print and speaks
@@ -14,10 +15,11 @@ class Wiki:
         Wiki.color = Color()
 
     def query(self, text=''):
-        print('trying wiki')
-        print(text)
+        #print('trying wiki')
+        #print(text)
         try:
             answer = wikipedia.summary(text, sentences=2)
+            self.color.info('Didnt find what you wanted? Try google : http://google.com/search?q='+re.sub(r' ', '+', text))
             Voice.speak('Heres a summary')
             return answer
 
@@ -25,6 +27,8 @@ class Wiki:
             Voice.speak('I am confused')
             Wiki.color.info('Did you mean -')
             Wiki.color.info(de)
+            self.color.info('Google instead? :- http://.google.com/search?q='+re.sub(r' ', '+', text))
+
             return ""
 
         except wikipedia.exceptions.PageError as pe:
