@@ -184,3 +184,11 @@ def textprocess(text):
         value = int(string)
         System.set_sound(value)
         return "Done"
+    
+    #Shutdown
+    if 'shutdown' == text:
+        System.shutdown()
+    
+    if 'restart' == text:
+        System.restart() 
+        

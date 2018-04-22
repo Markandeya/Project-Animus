@@ -2,6 +2,7 @@ import os
 import re
 from util.Notify import Notify
 from subprocess import call
+import time
 
 class System:
     notify = Notify()
@@ -38,3 +39,15 @@ class System:
         if (value <= 100) and (value >= 0):
             call(["amixer", "-D", "pulse", "sset", "Master", str(value)+"%"])
             System.notify.notify('Volume set to '+ str(value))
+    
+    @staticmethod
+    def shutdown():
+        System.notify.notify('Shutting down in 6 seconds')
+        time.sleep(6)
+        os.system("shutdown -h")
+    
+    @staticmethod
+    def restart():
+        System.notify.notify('Restarting in 6 seconds')
+        time.sleep(6)
+        os.system("reboot")
