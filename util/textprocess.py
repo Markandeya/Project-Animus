@@ -80,8 +80,8 @@ def textprocess(text):
     elif 'map from' in text:
         print('found map from command')
         places = text.split('map from')
-        places = places[1].split('to')
-
+        places = places[1].split('to',1)
+        print(places)
         Gmap.open(places[0], places[1])
         return 'Heres the route from '+places[0]+' to '+places[1]
     
