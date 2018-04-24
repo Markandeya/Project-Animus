@@ -170,8 +170,11 @@ def textprocess(text):
             string = string[1].lstrip()
         except Exception as e:
             return "cancel"
-        value = int(string)
-        System.change_brightness(value)
+        if string != "":
+            value = int(string)
+            System.change_brightness(value)
+        else:
+            print("Please say a value")
         return "Done"
 
     #Set volume

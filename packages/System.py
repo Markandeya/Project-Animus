@@ -33,12 +33,16 @@ class System:
         if value>0 and value<=100:
             os.system('xbacklight -set ' + str(value))
             System.notify.notify('Brightness set to '+ str(value))
+        else:
+            System.notify.notify('Brightness cannot be set to '+ str(value))
 
     @staticmethod
     def set_sound(value):
         if (value <= 100) and (value >= 0):
             call(["amixer", "-D", "pulse", "sset", "Master", str(value)+"%"])
             System.notify.notify('Volume set to '+ str(value))
+        else:
+            System.notify.notify('Volume cannot be set to '+ str(value))
     
     @staticmethod
     def shutdown():
